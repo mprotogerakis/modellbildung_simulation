@@ -9,13 +9,14 @@ Durch die Auswahl der `ert_shrlib.tlc` System-Target-Datei wird der Build-Prozes
 ## (Schritt 3: Anpassungen für Apple Mx-Macs)
 Falls Sie einen Apple Mx-Mac verwenden, passen Sie die Datei `Chart.mk` an:
 ```makefile
-ARCHS = arm64e```
+ARCHS = arm64e
+```
 
 dann make -f Chart.mk erneut ausführen.
 
 ## Schritt 4: Den Python Teil schreiben.
 In Python werden die Funktionen der DLL nutzbar via 
-
+<code>nano</code>
     from ctypes import *
     from ctypes import Structure, c_uint8, c_bool, POINTER, c_char_p
     import time
