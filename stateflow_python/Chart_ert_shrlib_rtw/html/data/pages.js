@@ -1,0 +1,1 @@
+var reportPages = [["Summary","Chart_survey.html"],["Subsystem Report","Chart_subsystems.html"],["Code Interface Report","Chart_interface.html"],["Traceability Report","Chart_trace.html"],["Static Code Metrics Report","Chart_metrics.html"],["Code Replacements Report","Chart_replacements.html"],["Coder Assumptions","Chart_coderassumptions.html"]];
