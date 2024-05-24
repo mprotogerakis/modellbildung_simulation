@@ -16,7 +16,7 @@ dann make -f Chart.mk erneut ausführen.
 
 ## Schritt 4: Den Python Teil schreiben.
 In Python werden die Funktionen der DLL nutzbar via 
-<code>nano</code>
+
     from ctypes import *
     from ctypes import Structure, c_uint8, c_bool, POINTER, c_char_p
     import time
@@ -29,13 +29,16 @@ Das Interface von Chart.h muss per Hand oder mit Hilfe von ChatGPT übersetzt we
 
 Die Struct-Deklarationen sehen dann z.B. so aus:
 
-class DW_Chart_T(Structure):
-    _fields_ = [
-        ("is_active_c3_Chart", c_uint8),
-        ("is_c3_Chart", c_uint8)
-    ]
+    class DW_Chart_T(Structure):
+        _fields_ = [
+            ("is_active_c3_Chart", c_uint8),
+            ("is_c3_Chart", c_uint8)
+        ]
 
 Die globalen Variablen der DLL müssen importiert werden, z.B. :
-    // Diese funktion importiert die gobale Variable Chart_U des Typs ExtU_Chart_T aus der DLL
+    // Diese funktion importiert die gobale Variable Chart_U des Typs <code>
+    ExtU_Chart_T aus der DLL
     Chart_U = ExtU_Chart_T.in_dll(my_functions, 'Chart_U')
+    </code>
+    
     
