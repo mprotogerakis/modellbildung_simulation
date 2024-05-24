@@ -35,10 +35,11 @@ Die Struct-Deklarationen sehen dann z.B. so aus:
             ("is_c3_Chart", c_uint8)
         ]
 
-Die globalen Variablen der DLL müssen importiert werden, z.B. :
-    // Diese funktion importiert die gobale Variable Chart_U des Typs <code>
+Die globalen Variablen der DLL müssen importiert werden, z.B.:
+    
+    // Diese funktion importiert die gobale Variable Chart_U des Typs 
     ExtU_Chart_T aus der DLL
     Chart_U = ExtU_Chart_T.in_dll(my_functions, 'Chart_U')
-    </code>
+    
     
     
