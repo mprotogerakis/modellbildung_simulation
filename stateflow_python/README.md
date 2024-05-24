@@ -9,7 +9,7 @@ Durch die Auswahl der `ert_shrlib.tlc` System-Target-Datei wird der Build-Prozes
 ## (Schritt 3: Anpassungen für Apple Mx-Macs)
 Falls Sie einen Apple Mx-Mac verwenden, passen Sie die Datei `Chart.mk` an:
 ```makefile
-ARCHS = arm64e
+ARCHS = arm64e```
 
 dann make -f Chart.mk erneut ausführen.
 
