@@ -1,6 +1,6 @@
 ## Schritt 01: Setup Embedded Coder:
 
-![alt text](https://www.dropbox.com/s/h7hyrzq3sl9q4e4/Bildschirmfoto%202024-05-25%20um%2007.26.47.png?dl=1)
+![Setup Embedded Coder](https://www.dropbox.com/s/h7hyrzq3sl9q4e4/Bildschirmfoto%202024-05-25%20um%2007.26.47.png?dl=1)
 
 
 
@@ -9,7 +9,7 @@ Durch die Auswahl der `ert_shrlib.tlc` System-Target-Datei wird der Build-Prozes
 
 ## Schritt 2: Code für das Subsystem generieren.
 
-![alt text](https://www.dropbox.com/s/91kgchl8n4illos/Bildschirmfoto%202024-05-25%20um%2007.27.38.png?dl=1])
+![Code für das Subsystem generieren]https://www.dropbox.com/s/91kgchl8n4illos/Bildschirmfoto%202024-05-25%20um%2007.27.38.png?dl=1]
 
 
 ## (Schritt 3: Anpassungen für Apple Mx-Macs)
@@ -17,7 +17,6 @@ Falls Sie einen Apple Mx-Mac verwenden, passen Sie die Datei `Chart.mk` an:
 ```makefile
 ARCHS = arm64e
 ```
-[https://capture.dropbox.com/2NRKNrIqHI2rHDPU]
 
 dann `make -f Chart.mk` erneut ausführen.
 
