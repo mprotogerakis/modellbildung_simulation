@@ -1,21 +1,33 @@
 ## Schritt 01: Setup Embedded Coder:
 https://de.mathworks.com/help/ecoder/ug/creating-and-using-host-based-shared-libraries.html
 
+[https://capture.dropbox.com/w1M3NIdTpUtkZVRt]
+
+[https://capture.dropbox.com/1Pr3g0dmRjQXvyIu]
+
 ## Schritt 1: ERT_Shrlib System-Target-Datei auswählen
 Durch die Auswahl der `ert_shrlib.tlc` System-Target-Datei wird der Build-Prozess so konfiguriert, dass eine Shared-Library-Version Ihres Modellcodes im aktuellen Arbeitsverzeichnis erstellt wird. Diese Auswahl ändert den vom Code-Generator für Ihr Modell produzierten Code nicht.
 
 ## Schritt 2: Code für das Subsystem generieren.
+
+[https://capture.dropbox.com/D3jNpXG68IjRqwRl]
+
 
 ## (Schritt 3: Anpassungen für Apple Mx-Macs)
 Falls Sie einen Apple Mx-Mac verwenden, passen Sie die Datei `Chart.mk` an:
 ```makefile
 ARCHS = arm64e
 ```
+[https://capture.dropbox.com/2NRKNrIqHI2rHDPU]
 
-dann make -f Chart.mk erneut ausführen.
+dann `make -f Chart.mk` erneut ausführen.
 
 ## Schritt 4: Den Python Teil schreiben.
-In Python werden die Funktionen der DLL nutzbar via 
+
+Einfache Beispiele zur Nutzung von C-Funktionen via `ctypes` in python im Allgemeinen finden sich: https://pgi-jcns.fz-juelich.de/portal/pages/using-c-from-python.html
+
+
+In Python werden die Funktionen der Simulink-generierten DLL nutzbar via 
 
     from ctypes import *
     from ctypes import Structure, c_uint8, c_bool, POINTER, c_char_p
@@ -24,8 +36,9 @@ In Python werden die Funktionen der DLL nutzbar via
     dylib_file = "Chart.dylib"
     my_functions = CDLL(dylib_file)
 
+
 ## Schritt 5: Das Interface aus dem Header-File nach Python übersetzen.
-Das Interface von Chart.h muss per Hand oder mit Hilfe von ChatGPT übersetzt werden in Python.
+Das Interface von `Chart.h` muss per Hand oder mit Hilfe von ChatGPT übersetzt werden in Python.
 
 Die Struct-Deklarationen sehen dann z.B. so aus:
 
@@ -35,7 +48,7 @@ Die Struct-Deklarationen sehen dann z.B. so aus:
             ("is_c3_Chart", c_uint8)
         ]
 
-Die globalen Variablen der DLL müssen importiert werden, z.B.:
+Entsprechend https://docs.python.org/3/library/ctypes.html#ctypes._CData.in_dll werden die globalen Variablen der DLL importiert im `in_dll`, z.B.:
     
     // Diese funktion importiert die gobale Variable Chart_U des Typs 
     ExtU_Chart_T aus der DLL
