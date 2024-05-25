@@ -1,6 +1,6 @@
+import asyncio
 from ctypes import *
 from ctypes import Structure, c_uint8, c_bool, POINTER, c_char_p
-import time
 
 class ChartModelWrapper:
     # Laden der dynamischen Bibliothek (dylib)
@@ -54,6 +54,11 @@ class ChartModelWrapper:
         ChartModelWrapper._my_functions.Chart_step()
 
     @staticmethod
+    async def step_async():
+        loop = asyncio.get_event_loop()
+        await loop.run_in_executor(None, ChartModelWrapper.step)
+
+    @staticmethod
     def terminate():
         ChartModelWrapper._my_functions.Chart_terminate()
 
@@ -70,30 +75,33 @@ class ChartModelWrapper:
     def display_state():
         print(f"A: {ChartModelWrapper.Chart_U.inA} B: {ChartModelWrapper.Chart_U.inB} out: {ChartModelWrapper.Chart_Y.out}")
 
-# Initialisierung des Modells
-ChartModelWrapper.initialize()
+async def main_loop():
+    # Initialisierung des Modells
+    ChartModelWrapper.initialize()
 
-# Endlosschleife für die Eingabe und Modellaktualisierung
-try:
-    while True:
-        # Ausgabe der aktuellen Eingabe- und Ausgabewerte
-        ChartModelWrapper.display_state()
+    try:
+        while True:
+            # Ausgabe der aktuellen Eingabe- und Ausgabewerte
+            ChartModelWrapper.display_state()
 
-        # Benutzerinput für A und B
-        inA = input('A:(1/0): ').lower().strip() == '1'
-        inB = input('B:(1/0): ').lower().strip() == '1'
-        ChartModelWrapper.set_inputs(inA, inB)
+            # Benutzerinput für A und B
+            inA = input('A:(1/0): ').lower().strip() == '1'
+            inB = input('B:(1/0): ').lower().strip() == '1'
+            ChartModelWrapper.set_inputs(inA, inB)
 
-        # Modellschritt ausführen
-        ChartModelWrapper.step()
+            # Asynchroner Modellschritt
+            await ChartModelWrapper.step_async()
 
-        # Ausgabe der aktuellen Eingabe- und Ausgabewerte nach Modellschritt
-        ChartModelWrapper.display_state()
+            # Ausgabe der aktuellen Eingabe- und Ausgabewerte nach Modellschritt
+            ChartModelWrapper.display_state()
 
-        # Kurze Pause
-        time.sleep(0.2)
-except KeyboardInterrupt:
-    pass
-finally:
-    # Modell beenden
-    ChartModelWrapper.terminate()
+            # Kurze Pause
+            await asyncio.sleep(0.2)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        # Modell beenden
+        ChartModelWrapper.terminate()
+
+# Ausführung der asynchronen Hauptschleife
+asyncio.run(main_loop())
