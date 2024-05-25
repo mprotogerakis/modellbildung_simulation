@@ -1,16 +1,15 @@
 ## Schritt 01: Setup Embedded Coder:
-https://de.mathworks.com/help/ecoder/ug/creating-and-using-host-based-shared-libraries.html
 
-![alt text](https://www.dropbox.com/s/h7hyrzq3sl9q4e4/Bildschirmfoto%202024-05-25%20um%2007.26.47.png?dl=0)
+![alt text](https://www.dropbox.com/s/h7hyrzq3sl9q4e4/Bildschirmfoto%202024-05-25%20um%2007.26.47.png?dl=1)
 
-[https://capture.dropbox.com/1Pr3g0dmRjQXvyIu]
+
 
 ## Schritt 1: ERT_Shrlib System-Target-Datei auswählen
 Durch die Auswahl der `ert_shrlib.tlc` System-Target-Datei wird der Build-Prozess so konfiguriert, dass eine Shared-Library-Version Ihres Modellcodes im aktuellen Arbeitsverzeichnis erstellt wird. Diese Auswahl ändert den vom Code-Generator für Ihr Modell produzierten Code nicht.
 
 ## Schritt 2: Code für das Subsystem generieren.
 
-[https://capture.dropbox.com/D3jNpXG68IjRqwRl]
+![alt text](https://www.dropbox.com/s/91kgchl8n4illos/Bildschirmfoto%202024-05-25%20um%2007.27.38.png?dl=1])
 
 
 ## (Schritt 3: Anpassungen für Apple Mx-Macs)
