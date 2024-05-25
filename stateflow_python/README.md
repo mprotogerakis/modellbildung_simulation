@@ -9,7 +9,7 @@ Durch die Auswahl der `ert_shrlib.tlc` System-Target-Datei wird der Build-Prozes
 
 ## Schritt 2: Code für das Subsystem generieren.
 
-![Code für das Subsystem generieren]https://www.dropbox.com/s/91kgchl8n4illos/Bildschirmfoto%202024-05-25%20um%2007.27.38.png?dl=1]
+![Code für das Subsystem generieren](https://www.dropbox.com/s/91kgchl8n4illos/Bildschirmfoto%202024-05-25%20um%2007.27.38.png?dl=1)
 
 
 ## (Schritt 3: Anpassungen für Apple Mx-Macs)
