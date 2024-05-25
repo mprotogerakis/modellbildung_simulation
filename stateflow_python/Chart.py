@@ -101,7 +101,7 @@ async def main_loop():
             inB = input('B:(1/0): ').lower().strip() == '1'
             ChartModelWrapper.set_inputs(inA, inB)
 
-            # Kurze Pause, um die Eingabe zu verarbeiten
+            # Kurze Pause, um die Eingabe zu verarbeiten und periodischen Task auszuführen
             await asyncio.sleep(0.1)
     except KeyboardInterrupt:
         pass
