@@ -1,6 +1,7 @@
 import asyncio
 from ctypes import *
 from ctypes import Structure, c_uint8, c_bool, POINTER, c_char_p
+import time
 
 class ChartModelWrapper:
     # Laden der dynamischen Bibliothek (dylib)
@@ -75,9 +76,20 @@ class ChartModelWrapper:
     def display_state():
         print(f"A: {ChartModelWrapper.Chart_U.inA} B: {ChartModelWrapper.Chart_U.inB} out: {ChartModelWrapper.Chart_Y.out}")
 
+async def periodic_step(interval):
+    while True:
+        start_time = time.time()
+        await ChartModelWrapper.step_async()
+        elapsed = time.time() - start_time
+        await asyncio.sleep(max(0, interval - elapsed))
+
 async def main_loop():
     # Initialisierung des Modells
     ChartModelWrapper.initialize()
+
+    # Start des periodischen Tasks
+    interval = 0.2  # gewünschtes Intervall in Sekunden
+    asyncio.create_task(periodic_step(interval))
 
     try:
         while True:
@@ -89,14 +101,8 @@ async def main_loop():
             inB = input('B:(1/0): ').lower().strip() == '1'
             ChartModelWrapper.set_inputs(inA, inB)
 
-            # Asynchroner Modellschritt
-            await ChartModelWrapper.step_async()
-
-            # Ausgabe der aktuellen Eingabe- und Ausgabewerte nach Modellschritt
-            ChartModelWrapper.display_state()
-
-            # Kurze Pause
-            await asyncio.sleep(0.2)
+            # Kurze Pause, um die Eingabe zu verarbeiten
+            await asyncio.sleep(0.1)
     except KeyboardInterrupt:
         pass
     finally:
