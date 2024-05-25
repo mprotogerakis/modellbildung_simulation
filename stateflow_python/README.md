@@ -1,7 +1,7 @@
 ## Schritt 01: Setup Embedded Coder:
 https://de.mathworks.com/help/ecoder/ug/creating-and-using-host-based-shared-libraries.html
 
-![alt text](https://capture.dropbox.com/w1M3NIdTpUtkZVRt)
+![alt text](https://www.dropbox.com/s/h7hyrzq3sl9q4e4/Bildschirmfoto%202024-05-25%20um%2007.26.47.png?dl=0)
 
 [https://capture.dropbox.com/1Pr3g0dmRjQXvyIu]
 
