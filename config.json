@@ -1,7 +1,7 @@
 {
     "cert_base": "/Users/proto/Library/CloudStorage/Dropbox/HSD_Nextcloud/Lehrveranstaltungen/Sommersemester/Modellbildung_Simulation/github/modellbildung_simulation/python_opcua_asyncio",
-    "cert": "certificates/own/my_generated_cert.der",
-    "private_key": "certificates/own/my_generated_private_key.pem",
+    "cert": "my_generated_cert.der",
+    "private_key": "my_generated_private_key.pem",
     "host_name": "MacBook-Pro-von-Michael.local",
     "client_app_uri": "urn:MacBook-Pro-von-Michael.local:foobar:myselfsignedclient",
     "url": "opc.tcp://nodered:53880/",
@@ -11,5 +11,5 @@
     "localityName": "Wuerselen",
     "organizationName": "Proto",
     "use_trust_store": false,
-    "trust_store_path": "/certificates/trusted/certs"
+    "trust_store_path": "certificates/trusted/certs"
 }
