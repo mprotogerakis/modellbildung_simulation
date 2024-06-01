@@ -4,6 +4,12 @@ import typer
 
 from OPCUAClient import OPCUAClient
 
+import logging
+logging.basicConfig(level=logging.INFO)
+_logger = logging.getLogger(__name__)
+
+def data_change_callback(node, val):
+    _logger.info('Data change callback: %r %s', node, val)
 
 
 app = typer.Typer()
@@ -42,7 +48,17 @@ def main(
     )
     loop = asyncio.get_event_loop()
     loop.set_debug(True)
-    loop.run_until_complete(opcua_client.run())
+    loop.run_until_complete(opcua_client.setup())
+    loop.run_until_complete(opcua_client.subscribe("ns=1;s=A", data_change_callback))
+    loop.run_until_complete(opcua_client.subscribe("ns=1;s=B", data_change_callback))
+    loop.run_until_complete(opcua_client.subscribe("ns=1;s=C", data_change_callback))
+    loop.run_until_complete(opcua_client.write_Boolean_value("ns=1;s=A", True))
+    loop.run_until_complete(opcua_client.write_Boolean_value("ns=1;s=A", False))
+    loop.run_until_complete(opcua_client.write_Boolean_value("ns=1;s=B", True))
+    
+    loop.run_forever()
+
+    loop.run_until_complete(opcua_client.disconnect())
     loop.close()
 
 if __name__ == "__main__":

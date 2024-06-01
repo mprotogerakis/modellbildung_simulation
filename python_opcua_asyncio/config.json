@@ -11,5 +11,7 @@
     "localityName": "Wuerselen",
     "organizationName": "Proto",
     "use_trust_store": false,
+    "username": "Administrator",
+    "password": "HardPassword!",
     "trust_store_path": "/certificates/trusted/certs"
 }
